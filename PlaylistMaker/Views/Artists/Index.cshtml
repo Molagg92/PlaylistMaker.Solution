@@ -1,0 +1,17 @@
+@{
+    ViewData["Title"] = "Artists Page";
+}
+@using PlaylistMaker.Models;
+
+<h1>Here is a list of artists</h1>
+
+@if (@Model.Count == 0)
+{
+	<h3> No Artists have been added to your list yet! </h3>
+}
+<ul>
+    @foreach (Artist artist in Model)
+    {
+			<li>@Html.ActionLink($"{artist.Name}", "Details" , new { id = artist.ArtistId })</li>
+    }
+</ul>
