@@ -1,3 +1,8 @@
+using Microsoft.AspNetCore.Builder;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
+using PlaylistMaker.Models;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -14,14 +19,14 @@ builder.Services.AddDbContext<PlaylistMakerContext>(
 var app = builder.Build();
 
 // FOR DEVELOPMENT ONLY
-DataInitializer.InitializeData(app);
+// DataInitializer.InitializeData(app);
 
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
 {
-    app.UseExceptionHandler("/Home/Error");
-    // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
-    app.UseHsts();
+  app.UseExceptionHandler("/Home/Error");
+  // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
+  app.UseHsts();
 }
 
 app.UseHttpsRedirection();
