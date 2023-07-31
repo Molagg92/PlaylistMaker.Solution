@@ -18,5 +18,4 @@ public class PlaylistMakerContext : DbContext
         modelBuilder.Entity<PlaylistSongEntity>()
             .HasKey(ps => new { ps.PlaylistId, ps.SongId });
     }
-
 }
