@@ -1,0 +1,25 @@
+@{
+    ViewData["Title"] = "Album Details";
+}
+
+@model PlaylistMaker.Models.Album
+@using PlaylistMaker.Models
+
+<h2>Album Details</h2>
+<hr/>
+<h3>@Html.DisplayNameFor(model => model.Title): @Html.DisplayFor(model => model.Title)</h3>
+
+@if (@Model.Songs.Count == 0)
+{
+  <h3> --no albums have been added to this artist yet-- </h3>
+} 
+else
+{
+  <h3>Songs:</h3>
+  <ul>
+    @foreach (Song song in Model.Songs)
+    {
+      <li>@Html.ActionLink($"{song.Title}", "Details", "Songs", new { id = song.SongId})</li>
+    }
+  </ul>
+}
