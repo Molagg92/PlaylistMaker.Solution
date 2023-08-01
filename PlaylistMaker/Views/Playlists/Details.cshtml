@@ -1,0 +1,25 @@
+@{
+    ViewData["Title"] = "Playlist Details";
+}
+
+@model PlaylistMaker.Models.Playlist
+@using PlaylistMaker.Models
+
+<h2>Playlist Details</h2>
+<h3>Name: @Model.Name</h3>
+
+<h4>Song list: </h4>
+
+@if (@Model.PlaylistSongEntities.Count == 0)
+{
+    <h3>This playlist has no songs</h3>
+} 
+else
+{
+    <ul>
+        @foreach(PlaylistSongEntity entity in Model.PlaylistSongEntities){
+            <li> @Html.ActionLink($"{entity.Song.Title}", "Details", "Songs", new { id = entity.Song.SongId})</li>
+           
+        }
+    </ul>
+}

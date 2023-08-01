@@ -18,7 +18,8 @@
 {
     <ul>
         @foreach(PlaylistSongEntity entity in Model.PlaylistSongEntities){
-            <li>@entity.Playlist.Name</li>
+            <li> @Html.ActionLink($"{entity.Playlist.Name}", "Details", "Playlists", new { id = entity.Playlist.PlaylistId})</li>
+           
         }
     </ul>
 }
