@@ -11,5 +11,6 @@
   @Html.LabelFor(model => model.Name)
   @Html.TextBoxFor(model => model.Name)
   <input type="submit" value="Add new playlist"/>
+  <span asp-validation-for="Name" class="text-danger"></span>
 }
 <p>@Html.ActionLink("Back", "Index")</p>

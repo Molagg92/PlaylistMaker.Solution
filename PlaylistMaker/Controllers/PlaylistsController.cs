@@ -43,6 +43,6 @@ public class PlaylistsController : Controller
             return RedirectToAction("Details", "Playlists", new { id = playlist.PlaylistId });
         }
 
-        return View(playlist);
+        return View();
     }
 }
