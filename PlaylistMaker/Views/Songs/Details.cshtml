@@ -1,0 +1,24 @@
+@{
+    ViewData["Title"] = "Song Details";
+}
+
+@model PlaylistMaker.Models.Song
+@using PlaylistMaker.Models
+
+<h2>Song Details</h2>
+<h3>Album: @Model.Album.Title</h3>
+<h4>Title: @Model.Title</h4>
+
+<h4>This song is included in these playlists: </h4>
+
+@if (@Model.PlaylistSongEntities.Count == 0)
+{
+    <h3>No playlists</h3>
+} else
+{
+    <ul>
+        @foreach(PlaylistSongEntity entity in Model.PlaylistSongEntities){
+            <li>@entity.Playlist.Name</li>
+        }
+    </ul>
+}

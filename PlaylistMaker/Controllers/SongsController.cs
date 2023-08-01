@@ -16,9 +16,10 @@ namespace PlaylistMaker.Controllers
 
         public ActionResult Details(int id)
         {
-            Song currentSong = _db.Songs.Include(s => s.PlaylistSongEntities)
-                                                .ThenInclude(pse => pse.Playlist)
-                                              .FirstOrDefault(s => s.SongId == id);
+            Song currentSong = _db.Songs.Include(s => s.Album)
+                                        .Include(s => s.PlaylistSongEntities)
+                                        .ThenInclude(pse => pse.Playlist)
+                                        .FirstOrDefault(s => s.SongId == id);
             return View(currentSong);
         }
 
