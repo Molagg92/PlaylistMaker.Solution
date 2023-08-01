@@ -1,0 +1,15 @@
+@{
+    ViewData["Title"] = "New Playlist";
+}
+
+@model PlaylistMaker.Models.Playlist
+
+<h4>Add a new playlist</h4>
+
+@using (Html.BeginForm())
+{
+  @Html.LabelFor(model => model.Name)
+  @Html.TextBoxFor(model => model.Name)
+  <input type="submit" value="Add new playlist"/>
+}
+<p>@Html.ActionLink("Back", "Index")</p>
