@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace PlaylistMaker.Migrations
 {
-    public partial class EntityPk : Migration
+    public partial class RemakeTable2 : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

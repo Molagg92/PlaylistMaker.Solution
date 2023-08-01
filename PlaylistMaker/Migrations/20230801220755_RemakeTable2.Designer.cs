@@ -10,8 +10,8 @@ using PlaylistMaker.Models;
 namespace PlaylistMaker.Migrations
 {
     [DbContext(typeof(PlaylistMakerContext))]
-    [Migration("20230731212509_EntityPk")]
-    partial class EntityPk
+    [Migration("20230801220755_RemakeTable2")]
+    partial class RemakeTable2
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
