@@ -22,10 +22,9 @@ public class PlaylistsController : Controller
 
     public ActionResult Details(int id)
     {
-        Playlist currentPlaylist = _db.Playlists
-                                          .Include(p => p.PlaylistSongEntities)
-                                          .ThenInclude(pse => pse.Song)
-                                          .FirstOrDefault(p => p.PlaylistId == id);
+        Playlist currentPlaylist = _db.Playlists.Include(p => p.PlaylistSongEntities)
+                                                .ThenInclude(pse => pse.Song)
+                                                .FirstOrDefault(p => p.PlaylistId == id);
         return View(currentPlaylist);
     }
 
@@ -37,8 +36,13 @@ public class PlaylistsController : Controller
     [HttpPost]
     public ActionResult Create(Playlist playlist)
     {
-        _db.Playlists.Add(playlist);
-        _db.SaveChanges();
-        return RedirectToAction("Index");
+        if (playlist.Name != null)
+        {
+            _db.Playlists.Add(playlist);
+            _db.SaveChanges();
+            return RedirectToAction("Details", "Playlists", new { id = playlist.PlaylistId });
+        }
+
+        return View(playlist);
     }
 }
