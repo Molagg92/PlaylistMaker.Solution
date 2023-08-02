@@ -35,7 +35,6 @@ public class PlaylistsController : Controller
 
         return Json(new { success = true });
     }
-    b
 
     public ActionResult Index()
     {

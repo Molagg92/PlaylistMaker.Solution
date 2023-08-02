@@ -26,6 +26,20 @@ namespace PlaylistMaker.Controllers
             return View(currentArtist);
 
         }
-
+        public ActionResult Create()
+        {
+            return View();
+        }
+        [HttpPost]
+        public ActionResult Create(Artist artist)
+        {
+            if (artist.Name != null)
+            {
+                _db.Artists.Add(artist);
+                _db.SaveChanges();
+                return RedirectToAction("Details", "Artists", new { id = artist.ArtistId });
+            }
+            return View();
+        }
     }
 }
