@@ -1,0 +1,18 @@
+@{
+    ViewData["Title"] = "New Song";
+}
+
+@model PlaylistMaker.Models.Song
+
+@using (Html.BeginForm())
+{
+  @Html.LabelFor(model => model.Title)
+  @Html.TextBoxFor(model => model.Title)
+
+  @Html.LabelFor(model => model.Album)
+  @Html.DropDownList("AlbumId")
+
+  <input type="submit" value="Add new Song"/>
+  <span asp-validation-for="Title" class="text-danger"></span>
+}
+<p>@Html.ActionLink("Back", "Index")</p>
