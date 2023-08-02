@@ -58,7 +58,7 @@ public class PlaylistsController : Controller
     [HttpPost]
     public ActionResult Create(Playlist playlist)
     {
-        if (playlist.Name != null)
+        if (ModelState.IsValid)
         {
             _db.Playlists.Add(playlist);
             _db.SaveChanges();

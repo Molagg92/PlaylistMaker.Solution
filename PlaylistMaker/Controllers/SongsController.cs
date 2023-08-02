@@ -34,12 +34,13 @@ namespace PlaylistMaker.Controllers
         public ActionResult Create(Song song)
         {
             //ModelState.IsValid
-            if (song.Title != null)
+            if (ModelState.IsValid)
             {
                 _db.Songs.Add(song);
                 _db.SaveChanges();
                 return RedirectToAction("Details", "Songs", new { id = song.SongId });
             }
+            ViewBag.AlbumId = new SelectList(_db.Albums, "AlbumId", "Title");
             return View();
         }
 

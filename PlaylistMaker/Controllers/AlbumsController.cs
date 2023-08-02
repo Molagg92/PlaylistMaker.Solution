@@ -32,12 +32,13 @@ namespace PlaylistMaker.Controllers
         [HttpPost]
         public ActionResult Create(Album album)
         {
-            if (album.Title != null)
+            if (ModelState.IsValid)
             {
                 _db.Albums.Add(album);
                 _db.SaveChanges();
                 return RedirectToAction("Details", "Albums", new { id = album.AlbumId });
             }
+            ViewBag.ArtistId = new SelectList(_db.Artists, "ArtistId", "Name");
             return View();
         }
     }

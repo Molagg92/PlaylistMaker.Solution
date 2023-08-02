@@ -33,7 +33,7 @@ namespace PlaylistMaker.Controllers
         [HttpPost]
         public ActionResult Create(Artist artist)
         {
-            if (artist.Name != null)
+            if (ModelState.IsValid)
             {
                 _db.Artists.Add(artist);
                 _db.SaveChanges();
