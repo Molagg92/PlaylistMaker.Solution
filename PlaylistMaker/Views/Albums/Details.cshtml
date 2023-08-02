@@ -19,7 +19,34 @@ else
   <ul>
     @foreach (Song song in Model.Songs)
     {
-      <li>@Html.ActionLink($"{song.Title}", "Details", "Songs", new { id = song.SongId})</li>
+      <li>@Html.ActionLink($"{song.Title}", "Details", "Songs", new { id = song.SongId})
+        <button class="add-to-playlist" data-song-id="@song.SongId">➕</button>
+      </li>
     }
   </ul>
+
+  <!-- The Modal -->
+<div class="modal" id="playlistModal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+
+      <!-- Modal Header -->
+      <div class="modal-header">
+        <h4 class="modal-title">Add Song to Playlist</h4>
+      </div>
+
+      <!-- Modal body -->
+      <div class="modal-body">
+        <ul id="playlistList"></ul>
+      </div>
+
+      <!-- Modal footer -->
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger close-modal-button" data-dismiss="modal">Close</button>
+      </div>
+
+    </div>
+  </div>
+</div>
+
 }

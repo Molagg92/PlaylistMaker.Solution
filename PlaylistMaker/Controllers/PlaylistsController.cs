@@ -14,6 +14,29 @@ public class PlaylistsController : Controller
         _db = db;
     }
 
+    [HttpGet]
+    public JsonResult GetPlaylists()
+    {
+        List<Playlist> playlists = _db.Playlists.ToList();
+        return Json(playlists);
+    }
+
+    [HttpPost]
+    public JsonResult AddSongToPlaylist(int songId, int playlistId)
+    {
+        PlaylistSongEntity playlistSong = new PlaylistSongEntity
+        {
+            SongId = songId,
+            PlaylistId = playlistId
+        };
+
+        _db.PlaylistSongEntities.Add(playlistSong);
+        _db.SaveChanges();
+
+        return Json(new { success = true });
+    }
+    b
+
     public ActionResult Index()
     {
         List<Playlist> model = _db.Playlists.ToList();
