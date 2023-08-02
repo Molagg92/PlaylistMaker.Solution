@@ -6,13 +6,22 @@
 
 @using (Html.BeginForm())
 {
-  @Html.LabelFor(model => model.Title)
-  @Html.TextBoxFor(model => model.Title)
+  @* Song Title *@
+  <div class="form-group">
+    @Html.LabelFor(model => model.Title, new { @class = "control-label" })
+    @Html.TextBoxFor(model => model.Title, new { @class = "form-control" })
+    <span asp-validation-for="Title" class="text-danger"></span>
+  </div>
 
-  @Html.LabelFor(model => model.Album)
-  @Html.DropDownList("AlbumId")
+  @* Album of Song *@
+  <div class="form-group">
+    @Html.LabelFor(model => model.Album, new { @class = "control-label" })
+    @Html.DropDownList("AlbumId", (SelectList)ViewBag.AlbumId, "Select an Album", new { @class = "form-control" })
+    <span asp-validation-for="AlbumId" class="text-danger"></span>
+  </div>
 
-  <input type="submit" value="Add new Song"/>
-  <span asp-validation-for="Title" class="text-danger"></span>
+  <div class="form-group">
+    <input type="submit" value="Add new Song" class="btn btn-primary"/>
+  </div>
 }
 <p>@Html.ActionLink("Back", "Index")</p>

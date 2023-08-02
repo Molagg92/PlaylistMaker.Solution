@@ -8,9 +8,14 @@
 
 @using (Html.BeginForm())
 {
-  @Html.LabelFor(model => model.Name)
-  @Html.TextBoxFor(model => model.Name)
-  <input type="submit" value="Add new playlist"/>
+  <div class="form-group">
+  @Html.LabelFor(model => model.Name, new { @class = "control-label"})
+  @Html.TextBoxFor(model => model.Name, new { @class = "form-control"})
   <span asp-validation-for="Name" class="text-danger"></span>
+  </div>
+
+  <div class="form-group">
+  <input type="submit" value="Add new playlist" class="btn btn-primary"/>
+  </div>
 }
 <p>@Html.ActionLink("Back", "Index")</p>
