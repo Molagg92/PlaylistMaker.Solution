@@ -1,0 +1,28 @@
+@{
+    ViewData["Title"] = "Playlist Form";
+}
+
+@model PlaylistMaker.Models.Playlist
+
+<h4>@ViewData["Title"]</h4>
+
+@if (Model != null && Model.PlaylistId != 0)
+{
+  @Html.HiddenFor(model => model.PlaylistId)
+}
+
+@using (Html.BeginForm($"{ViewData["FormRoute"]}", "Playlists", FormMethod.Post))
+{
+  <div class="form-group">
+    @Html.LabelFor(model => model.Name, new { @class = "control-label"})
+    @Html.TextBoxFor(model => model.Name, new { @class = "form-control"})
+    <span asp-validation-for="Name" class="text-danger"></span>
+  </div>
+
+  <div class="form-group">
+    <input type="submit" value="@ViewData["ButtonValue"]", class="btn btn-primary"/>
+  </div>
+}
+
+
+<p>@Html.ActionLink("Back", "Index")</p>

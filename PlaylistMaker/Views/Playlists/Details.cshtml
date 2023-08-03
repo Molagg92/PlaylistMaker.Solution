@@ -6,7 +6,9 @@
 @using PlaylistMaker.Models
 
 <h2>Playlist Details</h2>
-<h3>Name: @Model.Name</h3>
+<h3>Name: @Model.Name 
+    <a href="/playlists/edit/@Model.PlaylistId">✏️</a>
+</h3>
 
 <h4>Song list: </h4>
 

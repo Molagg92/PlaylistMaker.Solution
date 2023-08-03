@@ -52,19 +52,51 @@ public class PlaylistsController : Controller
 
     public ActionResult Create()
     {
-        return View();
+        ViewData["FormRoute"] = "Create";
+        ViewData["ButtonValue"] = "Add New Playlist";
+        return View("Form");
     }
 
     [HttpPost]
-    public ActionResult Create(Playlist playlist)
+    public IActionResult Create(Playlist playlist)
     {
-        if (ModelState.IsValid)
+        if (playlist.Name != null)
         {
             _db.Playlists.Add(playlist);
             _db.SaveChanges();
             return RedirectToAction("Details", "Playlists", new { id = playlist.PlaylistId });
         }
 
-        return View();
+        ViewData["FormRoute"] = "Create";
+        ViewData["ButtonValue"] = "Add New Playlist";
+        return View("Form");
     }
+
+    public ActionResult Edit(int id)
+    {
+        // Get the playlist from the db that matches the id.
+        Playlist currentPlaylist = _db.Playlists.FirstOrDefault(p => p.PlaylistId == id);
+
+        ViewData["FormRoute"] = "Edit";
+        ViewData["ButtonValue"] = "Save Changes";
+        return View("Form", currentPlaylist);
+    }
+
+    [HttpPost]
+    public ActionResult Edit(int id, Playlist playlist)
+    {
+        Playlist existingPlaylist = _db.Playlists.FirstOrDefault(p => p.PlaylistId == id);
+
+        if (existingPlaylist == null)
+        {
+            return NotFound();
+        }
+
+        existingPlaylist.Name = playlist.Name
+        _db.SaveChanges();
+
+        return RedirectToAction("Index");
+    }
+
+
 }
